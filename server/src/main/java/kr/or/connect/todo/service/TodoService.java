@@ -21,12 +21,13 @@ public class TodoService {
 	}
 
 	public Todo create(Todo todo) {
+		System.out.println(todo);
 		dao.insert(todo);
 		return todo;
 	}
 
 	public boolean update(Todo todo) {
-		todo.setChecked(!todo.isChecked());
+		todo.setCompleted(!todo.isCompleted());
 		int affected = dao.update(todo);
 		return affected == 1;
 	}

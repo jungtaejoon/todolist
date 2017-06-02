@@ -31,7 +31,7 @@ public class TodoDaoTest {
 
 		Todo selected = dao.selectById(id);
 		System.out.println(selected);
-		assertThat(selected.getTask(), is("장보기"));
+		assertThat(selected.getTodo(), is("장보기"));
 	}
 
 	@Test
@@ -46,12 +46,12 @@ public class TodoDaoTest {
 		Integer id = dao.insert(todo);
 
 		todo.setId(id);
-		todo.setChecked(true);
+		todo.setCompleted(true);
 		int affected = dao.update(todo);
 
 		assertThat(affected, is(1));
 		Todo updated = dao.selectById(id);
-		assertThat(updated.isChecked(), is(true));
+		assertThat(updated.isCompleted(), is(true));
 	}
 
 	@Test

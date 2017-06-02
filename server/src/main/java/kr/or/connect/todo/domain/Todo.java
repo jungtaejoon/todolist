@@ -1,50 +1,65 @@
 package kr.or.connect.todo.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.sql.Timestamp;
 
-@Entity
-@Table( name = "todo" )
 public class Todo {
-	
-	@Id
-    @Column( name = "id" )
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
 	private Integer id;
+
+	private String todo;
+
+	private boolean completed;
 	
-	@Column
-	private String task;
-	
-	@Column
-	private boolean checked;
-	
-	public Todo() {}
-	public Todo(String task) {
-		this.task = task;
-		this.checked = false;
+	private Timestamp date;
+
+	public Todo() {
 	}
+
+	public Todo(String todo) {
+		this.todo = todo;
+		this.completed = false;
+		this.date = new Timestamp(System.currentTimeMillis());
+	}
+
+	public Timestamp getDate() {
+		return date;
+	}
+
+	public void setDate(Timestamp date) {
+		this.date = date;
+	}
+
+	public Todo(Integer id, String todo, boolean completed) {
+		this(todo);
+		this.id = id;
+		this.completed = completed;
+	}
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getTask() {
-		return task;
-	}
-	public void setTask(String task) {
-		this.task = task;
-	}
-	public boolean isChecked() {
-		return checked;
-	}
-	public void setChecked(boolean checked) {
-		this.checked = checked;
-	}
-	
 
+	public String getTodo() {
+		return todo;
+	}
+
+	public void setTodo(String todo) {
+		this.todo = todo;
+	}
+
+	public boolean isCompleted() {
+		return completed;
+	}
+
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
+	}
+
+	public String toString() {
+		return "id = " + this.id + ", todo = " + this.todo + ", completed = " + this.completed;
+	}
 }
