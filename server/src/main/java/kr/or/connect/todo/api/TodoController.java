@@ -1,5 +1,6 @@
 package kr.or.connect.todo.api;
 
+import java.sql.Timestamp;
 import java.util.Collection;
 
 import org.springframework.http.HttpStatus;
@@ -32,8 +33,9 @@ public class TodoController {
 	}
 	
 	@PostMapping
-	public void create(@RequestBody Todo todo) {
-		System.out.println(service.create(todo));
+	public Todo create(@RequestBody Todo todo) {
+		todo.setDate(new Timestamp(System.currentTimeMillis()));
+		return service.create(todo);
 	}
 	
 	@PutMapping("{id}")

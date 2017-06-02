@@ -11,7 +11,8 @@
 			$.ajax({
 				method : 'POST',
 				data : taskJSON,
-				dataType : 'application/json',
+				contentType : 'application/json; charset=utf-8',
+				dataType : 'json',
 				url : 'http://localhost:8080/api/todos',
 				success : function(response) {
 					$('#test').html(response);

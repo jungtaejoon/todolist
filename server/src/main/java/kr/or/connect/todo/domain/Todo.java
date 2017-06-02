@@ -60,6 +60,7 @@ public class Todo {
 	}
 
 	public String toString() {
-		return "id = " + this.id + ", todo = " + this.todo + ", completed = " + this.completed;
+		return "id = " + this.id + ", todo = " + this.todo + ", completed = "
+	+ this.completed + ", date = " + date;
 	}
 }
