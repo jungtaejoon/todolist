@@ -37,9 +37,10 @@ public class TodoController {
 		return service.create(todo);
 	}
 	
-	@PutMapping
+	@PutMapping("{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public boolean update(@RequestBody Todo todo) {
+	public boolean update(@PathVariable Integer id, @RequestBody Todo todo) {
+		todo.setId(id);
 		return service.update(todo);
 	}
 	
