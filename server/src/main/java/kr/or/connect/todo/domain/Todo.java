@@ -1,17 +1,32 @@
 package kr.or.connect.todo.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table( name = "todo" )
 public class Todo {
+	
+	@Id
+    @Column( name = "id" )
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
+	@Column
 	private String task;
-	private Boolean isChecked;
+	
+	@Column
+	private boolean checked;
 	
 	public Todo() {}
 	public Todo(String task) {
 		this.task = task;
-		this.isChecked = false;
+		this.checked = false;
 	}
-	
 	public Integer getId() {
 		return id;
 	}
@@ -24,11 +39,12 @@ public class Todo {
 	public void setTask(String task) {
 		this.task = task;
 	}
-	public Boolean getIsChecked() {
-		return isChecked;
+	public boolean isChecked() {
+		return checked;
 	}
-	public void setIsChecked(Boolean isChecked) {
-		this.isChecked = isChecked;
+	public void setChecked(boolean checked) {
+		this.checked = checked;
 	}
 	
+
 }

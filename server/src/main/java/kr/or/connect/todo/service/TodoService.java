@@ -26,7 +26,7 @@ public class TodoService {
 	}
 
 	public boolean update(Todo todo) {
-		todo.setIsChecked(!todo.getIsChecked());
+		todo.setChecked(!todo.isChecked());
 		int affected = dao.update(todo);
 		return affected == 1;
 	}
