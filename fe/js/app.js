@@ -15,26 +15,46 @@
 			$('#new-todo').val("");
 		}
 	})
+	var filterText;
 	$('.filters li a').click(function(e) {
 		$('.filters li a').removeClass('selected');
 		var dom = e.target;
 		dom.classList.add('selected');
-		if(dom.text == "All") showAll();
-		else if(dom.text == "Active") showActive();
-		else if(dom.text == "Completed") showCompleted();
-		console.log(dom.text);
+		filterText = dom.text;
+		doFilter();
 	})
+	function doFilter() {
+		if(filterText == "All") showAll();
+		else if(filterText == "Active") showActive();
+		else if(filterText == "Completed") showCompleted();
+	}
+	function getCSSRule(ruleName) {
+	    ruleName = ruleName.toLowerCase();
+	    var result = null;
+	    var find = Array.prototype.find;
+
+	    find.call(document.styleSheets, styleSheet => {
+	        result = find.call(styleSheet.cssRules, cssRule => {
+	            return cssRule instanceof CSSStyleRule
+	                && cssRule.selectorText.toLowerCase() == ruleName;
+	        });
+	        return result != null;
+	    });
+	    return result;
+	}
+	var liRule = getCSSRule('.todo-list li');
+	var completedRule = getCSSRule('.todo-list .completed');
 	function showAll() {
-		console.log("@@");
-		$('#todo-list li').show();
+		liRule.style.display = 'block';
+		completedRule.style.display = 'block';
 	}
 	function showActive() {
-		$('#todo-list li').show();
-		$('#todo-list .completed').hide();
+		liRule.style.display = 'block';
+		completedRule.style.display = 'none';
 	}
 	function showCompleted() {
-		$('#todo-list li').hide();
-		$('#todo-list .completed').show();
+		liRule.style.display = 'none';
+		completedRule.style.display = 'block';
 	}
 
 })(window);
