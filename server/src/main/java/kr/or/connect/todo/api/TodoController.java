@@ -33,6 +33,7 @@ public class TodoController {
 	}
 	
 	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
 	public Todo create(@RequestBody Todo todo) {
 		todo.setDate(new Timestamp(System.currentTimeMillis()));
 		return service.create(todo);
@@ -40,7 +41,7 @@ public class TodoController {
 	
 	@PutMapping("{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public boolean update(@PathVariable Integer id, Todo todo) {
+	public boolean update(@PathVariable Integer id, @RequestBody Todo todo) {
 		todo.setId(id);
 		return service.update(todo);
 	}
