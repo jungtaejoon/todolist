@@ -1,11 +1,12 @@
+var completedTodos = new Array();
 function setAll(response) {
   if(response.length > 1) {
     response.sort(function(a, b) {
       return b['date'] - a['date'];
     });
   }
-  var completedTodos = new Array();
   var yet = new Array();
+  completedTodos = new Array();
   for(let i of response) {
     if(i.completed) completedTodos.push(i);
     else yet.push(i);
@@ -40,7 +41,7 @@ function doCheck(dom, id) {
   allAjax(arg);
 }
 function destroy(id) {
-  var arg = {method:'delete', arg:id, func:setAll, asyn:false};
+  var arg = {method:'delete', arg:id, func:setAll};
   allAjax(arg);
 }
 function findAll() {
@@ -48,5 +49,11 @@ function findAll() {
   allAjax(arg);
 }
 $('.clear-completed').click(function () {
-    $('.completed div .destroy').click();
+  var ids = new Array();
+  for(let i of completedTodos) {
+    ids.push(i.id);
+  }
+  var idsJSON = JSON.stringify(ids);
+  var arg = {method:'delete', data:idsJSON, func:setAll};
+  allAjax(arg);
 })

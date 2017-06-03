@@ -1,6 +1,7 @@
 package kr.or.connect.todo.api;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.http.HttpStatus;
@@ -48,6 +49,14 @@ public class TodoController {
 	@DeleteMapping("{id}")
 	public Collection<Todo> delete(@PathVariable Integer id) {
 		return service.delete(id);
+	}
+	
+	@DeleteMapping
+	public Collection<Todo> deleteTodos(@RequestBody ArrayList<Integer> ids) {
+		for(Integer id: ids) {
+			service.delete(id);
+		}
+		return service.findAll();
 	}
 
 }
