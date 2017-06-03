@@ -36,7 +36,6 @@ function doCheck(dom, id) {
   var completed = dom.checked ? true : false;
   var obj = {"completed":completed};
   var todoJSON = JSON.stringify(obj);
-  console.log(todoJSON);
   var arg = {method:'put', arg:id, data:todoJSON, func:setAll};
   allAjax(arg);
 }

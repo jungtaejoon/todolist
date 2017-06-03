@@ -28,22 +28,19 @@
 		else if(filterText == "Active") showActive();
 		else if(filterText == "Completed") showCompleted();
 	}
-	function getCSSRule(ruleName) {
-	    ruleName = ruleName.toLowerCase();
-	    var result = null;
-	    var find = Array.prototype.find;
-
-	    find.call(document.styleSheets, styleSheet => {
-	        result = find.call(styleSheet.cssRules, cssRule => {
-	            return cssRule instanceof CSSStyleRule
-	                && cssRule.selectorText.toLowerCase() == ruleName;
-	        });
-	        return result != null;
-	    });
-	    return result;
+	function getRule(rule) {
+		var sheets = document.styleSheets;
+		for(let i of sheets) {
+			for(let ii of i.cssRules) {
+				if(ii.selectorText == rule) {
+					return ii;
+				}
+			}
+		}
 	}
-	var liRule = getCSSRule('.todo-list li');
-	var completedRule = getCSSRule('.todo-list .completed');
+
+	var liRule = getRule('.todo-list li');
+	var completedRule = getRule('.todo-list .completed');
 	function showAll() {
 		liRule.style.display = 'block';
 		completedRule.style.display = 'block';

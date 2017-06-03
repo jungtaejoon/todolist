@@ -10,7 +10,6 @@ function allAjax(arg) {
     dataType : 'json',
     url : url,
     success : function(response) {
-      console.log(response);
       func(response);
     }
   })
