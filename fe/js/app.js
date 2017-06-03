@@ -4,13 +4,12 @@
 	// Your starting point. Enjoy the ride!
 	$('#new-task').keydown(function(e){
 		if(e.which == 13) {
-			var taskValue = $('#new-task').val();
+			var todoValue = $('#new-todo').val();
 			var obj = {"todo":taskValue};
-			var taskJSON = JSON.stringify(obj);
-			console.log(taskJSON);
+			var todoJSON = JSON.stringify(obj);
 			$.ajax({
 				method : 'POST',
-				data : taskJSON,
+				data : todoJSON,
 				contentType : 'application/json; charset=utf-8',
 				dataType : 'json',
 				url : 'http://localhost:8080/api/todos',
