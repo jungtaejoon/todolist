@@ -47,3 +47,6 @@ function findAll() {
   var arg = {method:'get', func:setAll};
   allAjax(arg);
 }
+$('.clear-completed').click(function () {
+    $('.completed div .destroy').click();
+})

@@ -15,15 +15,13 @@
 			$('#new-todo').val("");
 		}
 	})
-	var filterText;
 	$('.filters li a').click(function(e) {
 		$('.filters li a').removeClass('selected');
 		var dom = e.target;
 		dom.classList.add('selected');
-		filterText = dom.text;
-		doFilter();
+		doFilter(dom.text);
 	})
-	function doFilter() {
+	function doFilter(filterText) {
 		if(filterText == "All") showAll();
 		else if(filterText == "Active") showActive();
 		else if(filterText == "Completed") showCompleted();
