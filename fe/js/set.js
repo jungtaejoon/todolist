@@ -14,6 +14,7 @@ function setAll(response) {
   for(let i of completedTodos) {
     h += '<li class="completed">';
     h += '<div class="view">';
+    h += '<input type="hidden" name="id" value="' + i.id + '">';
     h += '<input class="toggle" type="checkbox" checked>';
     h += '<label>' + i.todo + '</label>';
     h += '<button class="destroy"></button>';
@@ -24,7 +25,8 @@ function setAll(response) {
   for(let i of yet) {
     h += '<li>';
     h += '<div class="view">';
-    h += '<input class="toggle" type="checkbox" checked>';
+    h += '<input type="hidden" name="id" value="' + i.id + '">';
+    h += '<input class="toggle" type="checkbox">';
     h += '<label>' + i.todo + '</label>';
     h += '<button class="destroy"></button>';
     h += '</div>';
