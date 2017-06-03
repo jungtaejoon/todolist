@@ -14,31 +14,33 @@ function setAll(response) {
   for(let i of yet) {
     h += '<li>';
     h += '<div class="view">';
-    h += '<input type="hidden" name="id" value="' + i.id + '">';
-    h += '<input class="toggle" onclick="doCheck(this)" type="checkbox">';
+    h += '<input class="toggle" onclick="doCheck(this, ' + i.id + ')" type="checkbox">';
     h += '<label>' + i.todo + '</label>';
-    h += '<button class="destroy"></button>';
+    h += '<button class="destroy" onclick="destroy(' + i.id + ')"></button>';
     h += '</div>';
     h += '</li>';
   }
   for(let i of completedTodos) {
     h += '<li class="completed">';
     h += '<div class="view">';
-    h += '<input type="hidden" name="id" value="' + i.id + '">';
-    h += '<input class="toggle" onclick="doCheck(this)" type="checkbox" checked>';
+    h += '<input class="toggle" onclick="doCheck(this, ' + i.id + ')" type="checkbox" checked>';
     h += '<label>' + i.todo + '</label>';
-    h += '<button class="destroy"></button>';
+    h += '<button class="destroy" onclick="destroy(' + i.id + ')"></button>';
     h += '</div>';
     h += '</li>';
   }
   $('#todo-list').html(h);
 }
-function doCheck(dom) {
+function doCheck(dom, id) {
   var completed = dom.checked ? true : false;
   var obj = {"completed":completed};
   var todoJSON = JSON.stringify(obj);
   console.log(todoJSON);
-  var arg = {method:'put', arg:dom.previousSibling.value, data:todoJSON, func:setAll};
+  var arg = {method:'put', arg:id, data:todoJSON, func:setAll};
+  allAjax(arg);
+}
+function destroy(id) {
+  var arg = {method:'delete', arg:id, func:setAll};
   allAjax(arg);
 }
 function findAll() {
