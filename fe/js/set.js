@@ -40,7 +40,7 @@ function doCheck(dom, id) {
   allAjax(arg);
 }
 function destroy(id) {
-  var arg = {method:'delete', arg:id, func:setAll};
+  var arg = {method:'delete', arg:id, func:setAll, asyn:false};
   allAjax(arg);
 }
 function findAll() {
