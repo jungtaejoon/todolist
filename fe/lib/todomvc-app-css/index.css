@@ -191,6 +191,10 @@ body {
 	opacity: 0;
 }
 
+.todo-list li .toggle:hover {
+	cursor: pointer;
+}
+
 .todo-list li .toggle + label {
 	/*
 		Firefox requires `#` to be escaped - https://bugzilla.mozilla.org/show_bug.cgi?id=922433
@@ -234,6 +238,7 @@ body {
 }
 
 .todo-list li .destroy:hover {
+	cursor: pointer;
 	color: #af5b5e;
 }
 
@@ -308,6 +313,7 @@ body {
 }
 
 .filters li a:hover {
+	cursor: pointer;
 	border-color: rgba(175, 47, 47, 0.1);
 }
 

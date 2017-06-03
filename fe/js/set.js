@@ -29,6 +29,7 @@ function setAll(response) {
     h += '</div>';
     h += '</li>';
   }
+  $('#yet').text(yet.length);
   $('#todo-list').html(h);
 }
 function doCheck(dom, id) {
