@@ -9,9 +9,8 @@ import kr.or.connect.todo.persistence.TodoDao;
 
 @Service
 public class TodoService {
-	
 	private TodoDao dao;
-	
+
 	public TodoService(TodoDao dao) {
 		this.dao = dao;
 	}

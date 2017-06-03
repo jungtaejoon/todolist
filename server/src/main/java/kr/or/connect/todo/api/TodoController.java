@@ -21,39 +21,39 @@ import kr.or.connect.todo.service.TodoService;
 @RestController
 @RequestMapping("/api/todos")
 public class TodoController {
-	
+
 	private TodoService service;
-	
+
 	TodoController(TodoService service) {
 		this.service = service;
 	}
-	
+
 	@GetMapping
 	public Collection<Todo> readList() {
 		return service.findAll();
 	}
-	
+
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Collection<Todo> create(@RequestBody Todo todo) {
 		todo.setDate(new Timestamp(System.currentTimeMillis()));
 		return service.create(todo);
 	}
-	
+
 	@PutMapping("{id}")
 	public Collection<Todo> update(@PathVariable Integer id, @RequestBody Todo todo) {
 		todo.setId(id);
 		return service.update(todo);
 	}
-	
+
 	@DeleteMapping("{id}")
 	public Collection<Todo> delete(@PathVariable Integer id) {
 		return service.delete(id);
 	}
-	
+
 	@DeleteMapping
 	public Collection<Todo> deleteTodos(@RequestBody ArrayList<Integer> ids) {
-		for(Integer id: ids) {
+		for (Integer id : ids) {
 			service.delete(id);
 		}
 		return service.findAll();

@@ -3,13 +3,9 @@ package kr.or.connect.todo.domain;
 import java.sql.Timestamp;
 
 public class Todo {
-
 	private Integer id;
-
 	private String todo;
-
 	private boolean completed;
-	
 	private Timestamp date;
 
 	public Todo() {
@@ -18,6 +14,7 @@ public class Todo {
 	public Todo(String todo) {
 		this.todo = todo;
 		this.completed = false;
+		this.date = new Timestamp(System.currentTimeMillis());
 	}
 
 	public Integer getId() {
@@ -52,8 +49,4 @@ public class Todo {
 		this.date = date;
 	}
 
-	public String toString() {
-		return "id = " + this.id + ", todo = " + this.todo + ", completed = "
-	+ this.completed + ", date = " + date;
-	}
 }
