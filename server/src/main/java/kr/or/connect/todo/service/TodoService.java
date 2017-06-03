@@ -20,21 +20,19 @@ public class TodoService {
 		return dao.selectAll();
 	}
 
-	public Todo create(Todo todo) {
-		System.out.println(todo);
-		todo.setId(dao.insert(todo));
-		return todo;
+	public Collection<Todo> create(Todo todo) {
+		dao.insert(todo);
+		return findAll();
 	}
 
-	public boolean update(Todo todo) {
-		todo.setCompleted(!todo.isCompleted());
-		int affected = dao.update(todo);
-		return affected == 1;
+	public Collection<Todo> update(Todo todo) {
+		dao.update(todo);
+		return findAll();
 	}
 
-	public boolean delete(Integer id) {
-		int affected = dao.deleteById(id);
-		return affected == 1;
+	public Collection<Todo> delete(Integer id) {
+		dao.deleteById(id);
+		return findAll();
 	}
 
 }

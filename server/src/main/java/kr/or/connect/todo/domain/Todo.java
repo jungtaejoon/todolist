@@ -18,21 +18,6 @@ public class Todo {
 	public Todo(String todo) {
 		this.todo = todo;
 		this.completed = false;
-		this.date = new Timestamp(System.currentTimeMillis());
-	}
-
-	public Timestamp getDate() {
-		return date;
-	}
-
-	public void setDate(Timestamp date) {
-		this.date = date;
-	}
-
-	public Todo(Integer id, String todo, boolean completed) {
-		this(todo);
-		this.id = id;
-		this.completed = completed;
 	}
 
 	public Integer getId() {
@@ -57,6 +42,14 @@ public class Todo {
 
 	public void setCompleted(boolean completed) {
 		this.completed = completed;
+	}
+
+	public Timestamp getDate() {
+		return date;
+	}
+
+	public void setDate(Timestamp date) {
+		this.date = date;
 	}
 
 	public String toString() {

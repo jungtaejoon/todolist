@@ -34,21 +34,19 @@ public class TodoController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Todo create(@RequestBody Todo todo) {
+	public Collection<Todo> create(@RequestBody Todo todo) {
 		todo.setDate(new Timestamp(System.currentTimeMillis()));
 		return service.create(todo);
 	}
 	
 	@PutMapping("{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public boolean update(@PathVariable Integer id, @RequestBody Todo todo) {
+	public Collection<Todo> update(@PathVariable Integer id, @RequestBody Todo todo) {
 		todo.setId(id);
 		return service.update(todo);
 	}
 	
 	@DeleteMapping("{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public boolean delete(@PathVariable Integer id) {
+	public Collection<Todo> delete(@PathVariable Integer id) {
 		return service.delete(id);
 	}
 

@@ -11,31 +11,37 @@ function setAll(response) {
     else yet.push(i);
   }
   var h = "";
-  for(let i of completedTodos) {
-    h += '<li class="completed">';
-    h += '<div class="view">';
-    h += '<input type="hidden" name="id" value="' + i.id + '">';
-    h += '<input class="toggle" type="checkbox" checked>';
-    h += '<label>' + i.todo + '</label>';
-    h += '<button class="destroy"></button>';
-    h += '</div>';
-    h += '<input class="edit" value="Create a TodoMVC template">';
-    h += '</li>';
-  }
   for(let i of yet) {
     h += '<li>';
     h += '<div class="view">';
     h += '<input type="hidden" name="id" value="' + i.id + '">';
-    h += '<input class="toggle" type="checkbox">';
+    h += '<input class="toggle" onclick="doCheck(this)" type="checkbox">';
     h += '<label>' + i.todo + '</label>';
     h += '<button class="destroy"></button>';
     h += '</div>';
-    h += '<input class="edit" value="Create a TodoMVC template">';
+    h += '</li>';
+  }
+  for(let i of completedTodos) {
+    h += '<li class="completed">';
+    h += '<div class="view">';
+    h += '<input type="hidden" name="id" value="' + i.id + '">';
+    h += '<input class="toggle" onclick="doCheck(this)" type="checkbox" checked>';
+    h += '<label>' + i.todo + '</label>';
+    h += '<button class="destroy"></button>';
+    h += '</div>';
     h += '</li>';
   }
   $('#todo-list').html(h);
 }
+function doCheck(dom) {
+  var completed = dom.checked ? true : false;
+  var obj = {"completed":completed};
+  var todoJSON = JSON.stringify(obj);
+  console.log(todoJSON);
+  var arg = {method:'put', arg:dom.previousSibling.value, data:todoJSON, func:setAll};
+  allAjax(arg);
+}
 function findAll() {
-  var arg = {method:'get', func:setAll}
+  var arg = {method:'get', func:setAll};
   allAjax(arg);
 }

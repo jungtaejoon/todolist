@@ -2,7 +2,6 @@ package kr.or.connect.todo.persistence;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.sql.DataSource;
@@ -35,25 +34,19 @@ public class TodoDao {
 		return insertAction.executeAndReturnKey(params).intValue();
 	}
 	
-	public Todo selectById(Integer id) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("id", id);
-		return jdbc.queryForObject(TodoSqls.SELECT_BY_ID, params, rowMapper);
-	}
-
 	public Collection<Todo> selectAll() {
 		Map<String, Object> params = Collections.emptyMap();
 		return jdbc.query(TodoSqls.SELECT_ALL, params, rowMapper);
 	}
 
 
-	public int update(Todo todo) {
+	public void update(Todo todo) {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(todo);
-		return jdbc.update(TodoSqls.UPDATE, params);
+		jdbc.update(TodoSqls.UPDATE, params);
 	}
 
-	public int deleteById(Integer id) {
+	public void deleteById(Integer id) {
 		Map<String, ?> params = Collections.singletonMap("id", id);
-		return jdbc.update(TodoSqls.DELETE_BY_ID, params);
+		jdbc.update(TodoSqls.DELETE_BY_ID, params);
 	}
 }

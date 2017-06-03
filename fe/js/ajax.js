@@ -1,5 +1,5 @@
 function allAjax(arg) {
-  var url = 'http://localhost:8080/api/todos';
+  var url = 'http://localhost:8080/api/todos/';
   function func() {};
   if(arg.arg) url += arg.arg;
   if(arg.func) func = arg.func;
